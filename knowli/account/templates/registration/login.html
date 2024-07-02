@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Logowanie{% endblock title %}
+
+{% block content %}
+<h1>Zaloguj się i odblokuj </br>całą bazę wiedzy</br> z Knowli.</h1>
+{% if form.errors %}
+    <p>
+        Niepoprawna nazwa użytkownika lub hasło.
+    </p>
+{% endif %}
+<div class='login-form'>
+    <form action='{% url "login" %}' method="POST">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <input type='hidden' name='next' value='{{ next }}'>
+        <p><input type='submit' value='zaloguj'></p>
+    </form>
+</div>
+{% endblock content %}

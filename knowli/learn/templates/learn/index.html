@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Knowli{% endblock title %}
+
+{% block content %}
+    <h1>Strona główna</h1>
+{% if request.user.is_authenticated %}
+    <p>Cześć, {{ request.user.username }}!</p>
+    <form id='logout-form'  action='{% url "logout" %}' method="POST" style='display:inline;'>
+        {% csrf_token %}
+        <button type='submit'>
+            Wyloguj
+        </button>
+    </form>
+    {% else %}
+    <p>Witaj, <a href='{% url "login" %}'>zaloguj się tutaj!</a></p>
+{% endif %}
+
+{% endblock content %}
