@@ -16,5 +16,13 @@
         <input type='hidden' name='next' value='{{ next }}'>
         <p><input type='submit' value='zaloguj'></p>
     </form>
+    <div class='google'>
+        <a href="{% url 'social:begin' 'google-oauth2' %}">
+            Zaloguj się z Google
+        </a>
+    </div>
+    <p><a href='{% url "register" %}'>Załóż konto!</a></p>
+    <p><a href='{% url "password_reset" %}'>Zresetuj hasło</a></p>
 </div>
+
 {% endblock content %}

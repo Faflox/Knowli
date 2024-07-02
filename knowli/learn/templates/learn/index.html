@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "learn_base.html" %}
 {% load static %}
 
 {% block title %}Knowli{% endblock title %}
@@ -7,12 +7,17 @@
     <h1>Strona główna</h1>
 {% if request.user.is_authenticated %}
     <p>Cześć, {{ request.user.username }}!</p>
+    <p>Twoj poziom nauki to {{ request.user.profile.get_education_level_display }}.</p>
+    <p>Sprawdź swoją wiedzę, z dodawania, rozwiąrz test:</p>
+    <a href='{% url "test_dodawanie" %}'>Test dodawanie</a>
+    <br>
     <form id='logout-form'  action='{% url "logout" %}' method="POST" style='display:inline;'>
         {% csrf_token %}
-        <button type='submit'>
+        <button type='submit' class='logout-button'>
             Wyloguj
-        </button>
+        </button> 
     </form>
+    <a href='{% url "password_change" %}'>Zmień hasło</a>
     {% else %}
     <p>Witaj, <a href='{% url "login" %}'>zaloguj się tutaj!</a></p>
 {% endif %}

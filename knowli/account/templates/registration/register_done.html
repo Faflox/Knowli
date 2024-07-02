@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Zarejestrowano{% endblock %}
+
+{% block content %}
+    <h1>Gratulacje, {{ new_user.first_name }}!</h1>
+    <p>
+        Twoje konto zostało utworzone.
+        Możesz się już <a href="{% url 'login' %}">zalogować</a>
+    </p>
+{% endblock %}
