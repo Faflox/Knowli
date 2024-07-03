@@ -4,22 +4,16 @@
 {% block title %}Knowli{% endblock title %}
 
 {% block content %}
-    <h1>Strona główna</h1>
-{% if request.user.is_authenticated %}
-    <p>Cześć, {{ request.user.username }}!</p>
-    <p>Twoj poziom nauki to {{ request.user.profile.get_education_level_display }}.</p>
-    <p>Sprawdź swoją wiedzę, z dodawania, rozwiąrz test:</p>
-    <a href='{% url "test_dodawanie" %}'>Test dodawanie</a>
-    <br>
-    <form id='logout-form'  action='{% url "logout" %}' method="POST" style='display:inline;'>
-        {% csrf_token %}
-        <button type='submit' class='logout-button'>
-            Wyloguj
-        </button> 
-    </form>
-    <a href='{% url "password_change" %}'>Zmień hasło</a>
-    {% else %}
-    <p>Witaj, <a href='{% url "login" %}'>zaloguj się tutaj!</a></p>
-{% endif %}
-
+    <div class='content-container'>
+        <div class='content'>
+            <p>Witaj w <b>Knowli</b> - aplikacji, która pomoże Ci najszybciej osiągnąć Twoje matematyczne cele.</p>
+            <br>
+            <p>Załóż konto, żeby w pełni wykorzystać potencjał Knowli i zyskać dostęp do wszystkich materiałów.</p>
+            <br>
+            <p>Kliknij <b><i>kursy</i></b>, w celu odkrycia dostępnych kursów, lub <b><i>arkusze</i></b>, w celu otrzymania dostępu do egzaminów państwowych z ostatnich lat.</p>
+            <br>
+            <p>Każdy z testów został przygotowany tak, aby następne zadania stale zwiększały poziom trudności 
+                a wiedza zdobyta w trakcie ich rozwiązywania przekładała się na Twój progres.</p>
+        </div>
+    </div>
 {% endblock content %}

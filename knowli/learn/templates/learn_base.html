@@ -2,18 +2,65 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>{% block title %}{% endblock title %}</title>
-        <link href='{% static "css/base.css" %}' rel='stylesheet'>
+        <title>{% block title %}Knowli{% endblock title %}</title>
+        <link href='{% static "learn/css/base.css" %}' rel='stylesheet'>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+        {% block head %}{% endblock head %}
     </head>
     <body>
         <div id='header'>
-            
+            {% block header %}{% endblock header %}
         </div>
         <div id='content'>
+            <div class='navbar nav1'>
+                <a href="{% url 'index' %}"><div><h1>Knowli</h1></div></a>
+                <div>
+                    {% if request.user.is_authenticated %}
+                        <div class='user-info'>
+                            <p>Cześć, {{ request.user.username }}!</p>
+                            <form id='logout-form'  action="{% url 'logout' %}" method="POST" style='display:inline;'>
+                            {% csrf_token %}
+                            <button type='submit' class='logout-button'>
+                                Wyloguj
+                            </button> 
+                            </form>
+                        </div>  
+                    {% else %}
+                        <b><a href='{% url "login" %}' class='a2'>zaloguj/zarejestruj</a></b>
+                    {% endif %}
+                </div>  
+            </div>
+            {% if request.user.is_authenticated %}
+                <div class='navbar nav2'>
+                    <h2 onclick="toggleLinks('nav2')">Kursy</h2>
+                    <b class="nav2-links">
+                        <a href="{% url 'test_list' 'egzamin8' %}">Egzamin ósmoklasisty</a>
+                        <a href="{% url 'test_list' 'matura' %}">Matura</a>
+                    </b>
+                </div>
+                <div class='navbar nav3'>
+                    <h2 onclick="toggleLinks('nav3')">Arkusze</h2>
+                    <b class="nav3-links">
+                        <a href=''>Egzamin ósmoklasisty</a>
+                        <a href=''>Matura</a>
+                    </b>
+                </div>
+            {% endif %}
             {% block content %}{% endblock content %}
         </div>
     </body>
+    <script>
+        function toggleLinks(navClass) {
+            var links = document.querySelector('.' + navClass + '-links');
+            links.classList.toggle('show-links');
+            
+            setTimeout(function() {
+                links.classList.toggle('animate-links');
+            }, 50);
+        }
+    </script>
 </html>

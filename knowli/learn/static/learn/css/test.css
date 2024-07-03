@@ -1,0 +1,48 @@
+.test{
+    background-color: rgb(201, 255, 163);
+    padding: 5px;
+    border-radius: 4px;
+    margin: 16px 0px;
+}
+
+.answer-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.answer-button {
+    margin-bottom: 8px;
+    width: 92%;
+    padding: 10px;
+    border: 1px solid #ffffff00;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    text-align: left;
+
+}
+
+.answer-button.selected {
+    background-color: #ff9cf7;
+}
+
+.answer-button:hover {
+    background-color: #e9ecef;
+}
+
+.submit-button {
+    width: 40%;
+    margin-top: 8px;
+    padding: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}

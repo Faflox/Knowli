@@ -1,27 +1,29 @@
 {% extends "base.html" %}
-
 {% block title %}Logowanie{% endblock title %}
 
 {% block content %}
-<h1>Zaloguj się i odblokuj </br>całą bazę wiedzy</br> z Knowli.</h1>
+<h1>Zaloguj się i odblokuj 
+</br>całą bazę wiedzy
+</br> z Knowli.</h1>
 {% if form.errors %}
     <p>
         Niepoprawna nazwa użytkownika lub hasło.
     </p>
 {% endif %}
 <div class='login-form'>
-    <form action='{% url "login" %}' method="POST">
+    <form action="{% url 'login' %}" method="POST">
         {{ form.as_p }}
         {% csrf_token %}
         <input type='hidden' name='next' value='{{ next }}'>
-        <p><input type='submit' value='zaloguj'></p>
+        <p><input type='submit' value='Zaloguj się'></p>   
     </form>
-    <div class='google'>
-        <a href="{% url 'social:begin' 'google-oauth2' %}">
-            Zaloguj się z Google
-        </a>
-    </div>
-    <p><a href='{% url "register" %}'>Załóż konto!</a></p>
+    <a class='google-a' href="{% url 'social:begin' 'google-oauth2' %}">
+        <button type="button" class="google-button">
+            <span class="google-button-text">Zaloguj się z Google</span>
+        </button>
+    </a>
+    <br>
+    <p><a href='{% url "register" %}'>Załóż konto</a></p>
     <p><a href='{% url "password_reset" %}'>Zresetuj hasło</a></p>
 </div>
 

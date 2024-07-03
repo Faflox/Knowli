@@ -1,0 +1,25 @@
+{% extends "learn_base.html" %}
+{% load static %}
+
+{% block title %}Lista testów{% endblock title %}
+{% block head %}<link href='{% static "learn/css/test.css" %}' rel='stylesheet'>{% endblock head %}
+
+{% block content %}
+    <div class="content-container">
+        <div class='content'>
+            <h1>Dostępne testy</h1>
+            <br>
+            {% if tests %}
+                {% for test in tests %}
+                    <div class="test">
+                        <h2><a href="{% url 'take_test' test.slug %}">{{ test.title }}</a></h2>
+                        <br>
+                        <p><strong>Opis:</strong> {{ test.description }}</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>Dopiero nad tym pracujemy...</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock content %}

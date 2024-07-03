@@ -11,7 +11,7 @@ def register(request):
             new_user.set_password(user_form.cleaned_data['password'])
             new_user.save()
             
-            profile = Profile.objects.create(user=new_user, education_level=user_form.cleaned_data['education_level'])
+            Profile.objects.create(user=new_user, education_level=user_form.cleaned_data['education_level'])
             return render(request,
                           'registration/register_done.html',
                           {'new_user': new_user})

@@ -1,0 +1,67 @@
+{% extends "learn_base.html" %}
+{% load static %}
+
+{% block title %}{{ test.title }}{% endblock title %}
+{% block head %}
+<link href='{% static "learn/css/test.css" %}' rel='stylesheet'>
+{% endblock head %}
+
+{% block content %}
+<div class='content-container'>
+    <div class='content'>
+        <h1>{{ test.title }}</h1>
+        <form id="test-form" method="post">
+            {% csrf_token %}
+            {% for form in task_forms %}
+                <div class='test'>
+                    <h2>{{ form.instance.question }}</h2>
+                    {% if form.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    {% for field in form.visible_fields %}
+                        <button type="button" data-task="{{ form.instance.id }}" data-choice="{{ field.html_name }}" class="answer-button {% if field.value == form.instance.correct_choice %}selected{% endif %}">{{ field.value }}</button>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            <button type="submit" class='submit-button'>Prześlij test!</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const buttons = document.querySelectorAll('.answer-button');
+        const form = document.getElementById('test-form');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', function() {
+                const taskID = this.getAttribute('data-task');
+                const choice = this.getAttribute('data-choice');
+                
+                const exercise = this.closest('.test');
+                const exerciseButtons = exercise.querySelectorAll('.answer-button');
+                exerciseButtons.forEach(btn => btn.classList.remove('selected'));
+
+                this.classList.add('selected');
+
+                let hiddenInput = document.querySelector(`input[name="task_${taskID}"]`);
+                if (!hiddenInput) {
+                    hiddenInput = document.createElement('input');
+                    hiddenInput.type = 'hidden';
+                    hiddenInput.name = `task_${taskID}`;
+                    form.appendChild(hiddenInput);
+                }
+                hiddenInput.value = choice;
+                console.log(`Task ${taskID} selected answer: ${choice}`);
+            });
+        });
+    });
+</script>
+
+
+{% endblock content %}
+  
