@@ -43,7 +43,7 @@ take_test.html template uses JS to mark only one answer in a question at the tim
 
 # How to run
 
-1.
+1.(optional if want to check google login)
 Add to the file hosts in C:\Windows\System32\Drivers\etc(PC) or /etc/host(MAC) this line:
 127.0.0.1 knowli.pl
 [host conf.](image.png)
@@ -57,6 +57,7 @@ Install requirements.txt by typing in console:
 
 4.
 Go to Knowli\knowli
+'cd knowli'
 
 5. 
 Type:
@@ -97,3 +98,7 @@ You should see the score of 0 with a highest score of 2.
 
 If you will you can check other test in Kursy > Matura or try to break the site.
 
+# Additional info
+Superuser:
+login: admin
+password: admin

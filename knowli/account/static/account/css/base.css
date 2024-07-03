@@ -85,7 +85,6 @@ form {
     background-color: #e62a31;
 }
 
-
 .google-button-text {
     flex: 1;
     text-align: center;
@@ -126,7 +125,6 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #004ecb;
 }
-
 
 form p {
     color: rgb(31, 31, 31);
