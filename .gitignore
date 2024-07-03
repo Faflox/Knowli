@@ -1,2 +1,3 @@
 win-venv/
 mac-venv/
+.env
